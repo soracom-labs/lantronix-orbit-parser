@@ -40,8 +40,8 @@ Parsed data format is as follows.
       "v9":"250122",
       "v10":"",
       "v11":"*1A",
-      "latitude":35.705833,
-      "longitude":139.7775
+      "latitude": 35.705765,
+      "longitude": 139.777562,
    },
    "obdEvent":{
       "batt":3.976,

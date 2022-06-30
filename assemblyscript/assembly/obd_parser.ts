@@ -7,7 +7,7 @@ export function parseLatLon(raw: string, cardinalPoint: string): number {
 
   deg = Math.abs(Math.round(deg * 1000000));
   min = Math.abs(Math.round(min * 1000000));
-  sec = Math.abs(Math.round(sec * 60) * 1000000);
+  sec = Math.abs(Math.round(sec * 60 * 1000000));
 
   return (Math.round(deg + min / 60 + sec / 3600) * sign) / 1000000;
 }

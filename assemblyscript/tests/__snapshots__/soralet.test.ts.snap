@@ -3,8 +3,8 @@
 exports[`soralet test suite WASM result should be expected 1`] = `
 Object {
   "gprmc": Object {
-    "latitude": 35.705833,
-    "longitude": 139.7775,
+    "latitude": 35.705765,
+    "longitude": 139.777562,
     "v0": "GPRMC",
     "v1": "071054.000",
     "v10": "",
@@ -27,8 +27,8 @@ Object {
 exports[`soralet test suite WASM result should be expected 2`] = `
 Object {
   "gprmc": Object {
-    "latitude": 35.705833,
-    "longitude": 139.7775,
+    "latitude": 35.705765,
+    "longitude": 139.777562,
     "v0": "GPRMC",
     "v1": "073545.000",
     "v10": "",
