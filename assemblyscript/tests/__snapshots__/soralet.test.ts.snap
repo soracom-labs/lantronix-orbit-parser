@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`soralet test suite WASM result should be expected 1`] = `
+Object {
+  "gprmc": Object {
+    "latitude": 35.705833,
+    "longitude": 139.7775,
+    "v0": "GPRMC",
+    "v1": "071054.000",
+    "v10": "",
+    "v11": "*10 ",
+    "v2": "V",
+    "v3": "3542.3459",
+    "v4": "N",
+    "v5": "13946.6537",
+    "v6": "E",
+    "v7": "",
+    "v8": "",
+    "v9": "250122",
+  },
+  "obdPos": Object {
+    "speed": 0,
+  },
+}
+`;
+
+exports[`soralet test suite WASM result should be expected 2`] = `
+Object {
+  "gprmc": Object {
+    "latitude": 35.705833,
+    "longitude": 139.7775,
+    "v0": "GPRMC",
+    "v1": "073545.000",
+    "v10": "",
+    "v11": "*17 ",
+    "v2": "V",
+    "v3": "3542.3459",
+    "v4": "N",
+    "v5": "13946.6537",
+    "v6": "E",
+    "v7": "",
+    "v8": "",
+    "v9": "250122",
+  },
+  "obdEvent": Object {
+    "batt": 3.695,
+    "ignition": 1,
+    "power": 12.07,
+    "temp": 30,
+  },
+  "obdPos": Object {
+    "speed": 0,
+  },
+}
+`;

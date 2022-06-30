@@ -1,0 +1,77 @@
+{
+  "name": "orbit-sdk-assemblyscript",
+  "version": "0.1.0",
+  "description": "AssemblyScript SDK for SORACOM Orbit",
+  "author": "0x6b",
+  "engines": {
+    "node": ">=12.16.3"
+  },
+  "keywords": [
+    "soracom",
+    "wasm",
+    "orbit"
+  ],
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "homepage": "https://github.com/soracom/orbit-sdk-assemblyscript",
+  "bugs": {
+    "url": "https://github.com/soracom/orbit-sdk-assemblyscript/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/soracom/orbit-sdk-assemblyscript.git"
+  },
+  "main": "assembly/index.ts",
+  "files": [
+    "assembly/index.ts",
+    "assembly/tsconfig.json"
+  ],
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "asbuild:untouched": "asc assembly/index.ts -b build/untouched.wasm -t build/untouched.wat --sourceMap --debug",
+    "asbuild:optimized": "asc assembly/index.ts -b build/optimized.wasm -t build/optimized.wat --sourceMap --optimize",
+    "asbuild": "npm run asbuild:untouched && npm run asbuild:optimized"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.10.1",
+    "@typescript-eslint/parser": "^3.10.1",
+    "assemblyscript": "^0.14.9",
+    "eslint": "^7.7.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.1.1",
+    "typescript": "^4.0.2"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "semi": true,
+    "trailingComma": "all"
+  },
+  "eslintConfig": {
+    "env": {
+      "es6": true,
+      "node": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "prettier/@typescript-eslint",
+      "plugin:prettier/recommended"
+    ],
+    "rules": {},
+    "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+    }
+  }
+}
