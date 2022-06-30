@@ -55,4 +55,3 @@ Parsed data format is as follows.
 ## Run the application
 
 Please follow [this guide](assemblyscript/README.md) to run and deploy the application.
-Prebuilt soralet can be found [here](prebuilt/soralet-optimized.wasm).
