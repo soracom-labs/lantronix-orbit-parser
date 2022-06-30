@@ -33,10 +33,8 @@ export function uplink(): i32 {
       //GPRMC,045752.000,V,3542.3459,N,13946.6537,E,,,250122,,*16
       isGPRMCAcquired = true;
       pre = "gprmc";
-      if (!isFlat) {
-        encoder.pushObject(pre);
-        pre = "";
-      }
+      encoder.pushObject(pre);
+      pre = "";
 
       for (let j = 0; j < data.length; ++j) {
         encoder.setString(pre + "v" + j.toString(), data[j]);
@@ -52,17 +50,13 @@ export function uplink(): i32 {
         encoder.setFloat(pre + "longitude", longitude);
       }
 
-      if (!isFlat) {
-        encoder.popObject();
-      }
+      encoder.popObject();
     } else if (label == "<sfal.pos" && !isSfalPosAcquired) {
       isSfalPosAcquired = true;
 
       pre = "obdPos";
-      if (!isFlat) {
-        encoder.pushObject(pre);
-        pre = "";
-      }
+      encoder.pushObject(pre);
+      pre = "";
 
       for (let j = 0; j < data.length; ++j) {
         if (data[j].includes("_speed")) {
@@ -83,10 +77,8 @@ export function uplink(): i32 {
       isSfalEventAcquired = true;
 
       pre = "obdEvent";
-      if (!isFlat) {
-        encoder.pushObject(pre);
-        pre = "";
-      }
+      encoder.pushObject(pre);
+      pre = "";
 
       for (let j = 0; j < data.length; ++j) {
         if (data[j].includes("batt")) {
@@ -116,9 +108,7 @@ export function uplink(): i32 {
         }
       }
 
-      if (!isFlat) {
-        encoder.popObject();
-      }
+      encoder.popObject();
     }
   }
 
