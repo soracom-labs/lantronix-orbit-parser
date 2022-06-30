@@ -1,7 +1,7 @@
 import { setOutputJSON, log, getInputBufferAsString } from "orbit-sdk-assemblyscript";
 
 import { JSONEncoder } from "assemblyscript-json";
-import * as Obd2Parser from "./obd_parser";
+import * as NmeaParser from "./nmea_parser";
 
 // $<sfal.pos _speed='0.00'>*43 $GPRMC,025904.000,V,3542.3459,N,13946.6537,E,,,250122,,*1D $<end> $<sfal.event _batt='3.312' _temp='28' _power='12.070' Ignition='1'>*4E $GPRMC,025904.000,V,3542.3459,N,13946.6537,E,,,250122,,*1D $<end>
 
@@ -40,12 +40,12 @@ export function uplink(): i32 {
         encoder.setString(pre + "v" + j.toString(), data[j]);
       }
 
-      const latitude: number = Obd2Parser.parseLatLon(data[3], data[4]);
+      const latitude: number = NmeaParser.parseLatLon(data[3], data[4]);
       if (latitude !== 0) {
         encoder.setFloat(pre + "latitude", latitude);
       }
 
-      const longitude: number = Obd2Parser.parseLatLon(data[5], data[6]);
+      const longitude: number = NmeaParser.parseLatLon(data[5], data[6]);
       if (longitude !== 0) {
         encoder.setFloat(pre + "longitude", longitude);
       }
@@ -61,7 +61,7 @@ export function uplink(): i32 {
       for (let j = 0; j < data.length; ++j) {
         if (data[j].includes("_speed")) {
           //_speed='0.00'
-          const speed: string = Obd2Parser.getValueFromKV(data[j]);
+          const speed: string = NmeaParser.getValueFromKV(data[j]);
           if (speed != "") {
             encoder.setFloat(pre + "speed", parseFloat(speed));
           }
@@ -83,25 +83,25 @@ export function uplink(): i32 {
       for (let j = 0; j < data.length; ++j) {
         if (data[j].includes("batt")) {
           //_batt='3.312'
-          const batt: string = Obd2Parser.getValueFromKV(data[j]);
+          const batt: string = NmeaParser.getValueFromKV(data[j]);
           if (batt != "") {
             encoder.setFloat(pre + "batt", parseFloat(batt));
           }
         } else if (data[j].includes("temp")) {
           //_temp='28'
-          const temp: string = Obd2Parser.getValueFromKV(data[j]);
+          const temp: string = NmeaParser.getValueFromKV(data[j]);
           if (temp != "") {
             encoder.setFloat(pre + "temp", parseFloat(temp));
           }
         } else if (data[j].includes("power")) {
           //_power='12.070'
-          const power: string = Obd2Parser.getValueFromKV(data[j]);
+          const power: string = NmeaParser.getValueFromKV(data[j]);
           if (power != "") {
             encoder.setFloat(pre + "power", parseFloat(power));
           }
         } else if (data[j].includes("Ignition")) {
           //Ignition='1'>*4E
-          const ignition: string = Obd2Parser.getValueFromKV(data[j]);
+          const ignition: string = NmeaParser.getValueFromKV(data[j]);
           if (ignition != "") {
             encoder.setFloat(pre + "ignition", parseFloat(ignition));
           }
