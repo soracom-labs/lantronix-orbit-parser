@@ -16,9 +16,9 @@ export function uplink(): i32 {
   const lines = input.replaceAll("\r\n", "").split("$");
 
   const encoder = new JSONEncoder();
-  var isSfalPosAcquired = false;
-  var isSfalEventAcquired = false;
-  var isGPRMCAcquired = false;
+  var isSfalPosFound = false;
+  var isSfalEventFound = false;
+  var isGPRMCFound = false;
 
   for (let i = 0; i < lines.length; ++i) {
     const data = lines[i].includes("sfal") ? lines[i].split(" ") : lines[i].split(",");
@@ -27,9 +27,9 @@ export function uplink(): i32 {
     }
 
     const label = data[0];
-    if (label == "GPRMC" && !isGPRMCAcquired) {
+    if (label == "GPRMC" && !isGPRMCFound) {
       //GPRMC,045752.000,V,3542.3459,N,13946.6537,E,,,250122,,*16
-      isGPRMCAcquired = true;
+      isGPRMCFound = true;
       encoder.pushObject("gprmc");
 
       for (let j = 0; j < data.length; ++j) {
@@ -47,8 +47,8 @@ export function uplink(): i32 {
       }
 
       encoder.popObject();
-    } else if (label == "<sfal.pos" && !isSfalPosAcquired) {
-      isSfalPosAcquired = true;
+    } else if (label == "<sfal.pos" && !isSfalPosFound) {
+      isSfalPosFound = true;
 
       encoder.pushObject("obdPos");
 
@@ -65,8 +65,8 @@ export function uplink(): i32 {
       encoder.popObject();
 
       //<sfal.event _batt='3.312' _temp='28' _power='12.070' Ignition='1'>*4E
-    } else if (label == "<sfal.event" && !isSfalEventAcquired) {
-      isSfalEventAcquired = true;
+    } else if (label == "<sfal.event" && !isSfalEventFound) {
+      isSfalEventFound = true;
 
       encoder.pushObject("obdEvent");
 
